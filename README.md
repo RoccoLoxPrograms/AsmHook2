@@ -1,6 +1,6 @@
 # ASMHOOK
 
-This tiny program installs a hook that restores assembly functionality on OS versions above 5.5.0.
+This tiny program installs app that when tun will install a hook that restores assembly functionality on OS versions above 5.5.0 including 5.8.3 and above.
 
 ## Compatibility
 
@@ -11,12 +11,6 @@ This tiny program installs a hook that restores assembly functionality on OS ver
 If it doesn't have exactly `CE` in the name then it is not supported!
 
 - Any OS version
-
-## Compile
-
-    git clone https://github.com/jacobly0/asmhook.git
-    cd asmhook
-    make # or make unprot to make an unprotected program
 
 ## FAQ
 
@@ -38,7 +32,7 @@ Until the next ram clear, but it persists through Garbage Collects.
 
 ### Which one should I install?
 
-Just use ASMHOOK.8xp if you are able to transfer it.  If you are using TI-Connect CE for Chrome OS then you may have to use ASMHOOK_unprot.8xp instead.
+Just use ASMHOOK2.8xp if you are able to transfer it.  If you are using TI-Connect CE for Chrome OS then you may have to use ASMHOOK2_unprot.8xp instead.
 
 ### How do I install?
 
@@ -47,7 +41,3 @@ Assembly programs were removed from recent OS versions, which are also the only 
 ### What does ERR:INVALID mean?
 
 You have recent OS that disables assembly programs, see the previous answer.
-
-### It didn't do anything when I ran it!
-
-It's not supposed to.  An easy way to test if it worked is to try running itself from the homescreen afterwards.

@@ -1,8 +1,13 @@
-include 'ez80.inc'
-include 'tiformat.inc'
-include 'ti84pceg.inc'
-name := 'ASMHOOK'
-format ti archived executable protected program name
+;----------------------------------------
+;
+; AsmHook2 Source Code - ASMHOOK.asm
+; By RoccoLox Programs and Jacobly
+; Copyright 2025
+; Last Built: August 29, 2025
+;
+;----------------------------------------
+
+name := 'ASMHOOK2'
 
 macro trampoline? reg: hl
 	local base
@@ -22,119 +27,6 @@ macro trampoline? reg: hl
 	end macro
 end macro
 
-launch:	call	ti.ChkFindSym
-	ret	c
-	ld	hl, launch.endoff
-	add	hl, de
-	jp	(hl)
-.endoff := 10 + lengthof name + 2 + 2 + $ - .
-
-	element	base
-	org	base
-inst:	push	af, bc, de, hl
-	call	ti._frameset0
-.loc:	ex	de, hl
-	call	ti.ChkInRam
-	jr	nz, .arc
-	jr	.cont
-	assert	$ = 10 + lengthof name + $$
-	jr	inst
-.cont:	ld	hl, .name - .loc
-	add	hl, de
-	call	ti.Mov9ToOP1
-trampoline
-	ld	ix, (ti.arcInfo)
-	lea	hl, ix + launch.endoff + .ret - .
-	jp	(hl)
-	.count := ($ - $$ + long - 1) / long
-end trampoline
-	pea	ix - .count * long
-	call	ti.ChkFindSym
-	jp	ti.ArchiveVar
-.ret:
-repeat .count
-	pop	de
-end repeat
-	ld	de, .loc - .ret
-	add	hl, de
-	ex	de, hl
-.arc:	ld	hl, menu - 1 - .loc
-	add	hl, de
-	ld	(ti.menuHookPtr), hl
-	ld	hl, parser - 1 - .loc
-	add	hl, de
-	ld	(ti.parserHookPtr), hl
-	ld	hl, ti.flags + ti.hookflags4
-	ld	a, (hl)
-	or	a, 1 shl ti.menuHookActive or 1 shl ti.parserHookActive
-	ld	(hl), a
-	pop	ix, hl, de, bc, af
-	ret
-match any, protected
-.name	db	ti.ProtProgObj, name, 0
-else
-.name	db	ti.ProgObj, name, 0
-end match
-	db	$83
-menu:	cp	a, 3
-	jr	nz, .retz
-	ld	a, b
-	cp	a, ti.kYes
-	jr	nz, .retz
-	ld	a, (ti.menuCurrent)
-	cp	a, $40
-	jr	nz, .retz
-	lea	hl, inst.name + ix - menu
-	call	ti.Mov9ToOP1
-	call	ti.ChkFindSym
-	sbc	a, a
-	or	a, b
-	rlca
-	jr	c, .yes
-	call	ti.PushRealO1
-	sbc	hl, hl
-	add	hl, sp
-	ex	de, hl
-	ld	hl, -.inserted * long
-	add	hl, sp
-	ld	sp, hl
-	ld	bc, 7 * long
-	ex	de, hl
-	ldir
-	ex	de, hl
-virtual
-	pop	hl
-	add	hl, de
-	pop	de
-	load	.trampoline1: $ - $$ from $$
-end virtual
-virtual
-	di
-	pop	de
-	jp	(hl)
-	load	.trampoline2: $ - $$ from $$
-end virtual
-iterate value, ti.PopRealO1, ti.ChkFindSym, relative 6, launch.endoff, .trampoline1, .trampoline2
- match =relative? offset, value
-	ex	de, hl
-	ld	hl, offset
-	add	hl, de
-	ex	de, hl
- else
-	ld	de, value
- end match
-	ld	(hl), de
- if % <> %%
-  repeat long
-	inc	hl
-  end repeat
- else
-	.inserted := %
- end if
-end iterate
-.yes:	ld	b, ti.kYes
-.retz:	cp	a, a
-	ret
 clean:	assert	~ti.LoadHLInd_s xor ti.JErrorNo and not $FF
 	ex	(sp), hl
 	ld	(hl), ti.JErrorNo and $FF
