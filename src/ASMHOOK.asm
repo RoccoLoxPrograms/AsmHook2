@@ -9,24 +9,6 @@
 
 name := 'ASMHOOK2'
 
-macro trampoline? reg: hl
-	local base
-	element base
-	virtual at base
-
-	macro end?.trampoline?!
-			local code
-			load code: $ - $$ from $$
-		end virtual
-
-		repeat (lengthof code + long - 1) / long
-			ld	reg, code shr ((%% - %) * long shl 3) and ((1 shl (long shl 3)) - 1)
-			push	reg
-		end repeat
-		purge end?.trampoline?
-	end macro
-end macro
-
 clean:	assert	~ti.LoadHLInd_s xor ti.JErrorNo and not $FF
 	ex	(sp), hl
 	ld	(hl), ti.JErrorNo and $FF
