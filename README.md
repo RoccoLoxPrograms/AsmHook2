@@ -1,6 +1,6 @@
 # AsmHook2
 
-This tiny program installs an app  that when tun will install a hook that restores assembly functionality on OS versions above 5.5.0 including 5.8.3 and above.
+This tiny program installs an app  that when run will install a hook that restores assembly functionality on OS versions above 5.5.0 including 5.8.3 and above.
 
 ## Compatibility
 
