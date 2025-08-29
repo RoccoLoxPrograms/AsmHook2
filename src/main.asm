@@ -40,7 +40,7 @@ end macro
 
 include 'installer.asm'
 
-app_start 'AsmHook2', '(C)  2022-2024  RoccoLox  Programs', 0
+app_start 'AsmHook2', '(C)  2025 RoccoLox and jacobly', 0
 
 installHook:
     di
