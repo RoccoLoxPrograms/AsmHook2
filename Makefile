@@ -15,5 +15,6 @@ unprot:
 
 all:
 	fasmg src/main.asm AsmHook2.8xp
+	fasmg -i "protected equ" src/main.asm AsmHook2_unprot.8xp
 
 .PHONEY: all prot unprot
