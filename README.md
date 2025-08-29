@@ -32,7 +32,7 @@ Until the next ram clear, but it persists through Garbage Collects.
 
 ### Which one should I install?
 
-Just use ASMHOOK2.8xp if you are able to transfer it.  If you are using TI-Connect CE for Chrome OS then you may have to use ASMHOOK2_unprot.8xp instead.
+Just use AsmHook2.8xp if you are able to transfer it.  If you are using TI-Connect CE for Chrome OS then you may have to use AsmHook2_unprot.8xp instead.
 
 ### How do I install?
 
