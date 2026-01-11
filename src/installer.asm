@@ -2,8 +2,8 @@
 ;
 ; AsmHook2 Source Code - installer.asm
 ; By RoccoLox Programs and Jacobly
-; Copyright 2025
-; Last Built: August 29, 2025
+; Copyright 2025 - 2026
+; Last Built: January 10, 2026
 ;
 ;----------------------------------------
 

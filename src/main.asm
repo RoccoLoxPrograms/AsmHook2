@@ -2,8 +2,8 @@
 ;
 ; AsmHook2 Source Code - main.asm
 ; By RoccoLox Programs and Jacobly
-; Copyright 2025
-; Last Built: August 29, 2025
+; Copyright 2025 - 2026
+; Last Built: January 10, 2026
 ;
 ;----------------------------------------
 
@@ -40,7 +40,7 @@ end macro
 
 include 'installer.asm'
 
-app_start 'AsmHook2', '(C)  2025 RoccoLox and jacobly', 0
+app_start 'AsmHook2', '(C)  2025-2026 RoccoLox and jacobly', 0
 
 installHook:
     di
