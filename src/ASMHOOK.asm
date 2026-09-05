@@ -3,7 +3,7 @@
 ; AsmHook2 Source Code - ASMHOOK.asm
 ; By RoccoLox Programs and Jacobly
 ; Copyright 2025 - 2026
-; Last Built: January 10, 2026
+; Last Built: September 4, 2026
 ;
 ;----------------------------------------
 

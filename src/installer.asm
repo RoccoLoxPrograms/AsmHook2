@@ -3,7 +3,7 @@
 ; AsmHook2 Source Code - installer.asm
 ; By RoccoLox Programs and Jacobly
 ; Copyright 2025 - 2026
-; Last Built: January 10, 2026
+; Last Built: September 4, 2026
 ;
 ;----------------------------------------
 
@@ -15,7 +15,7 @@ installApp:
 
     installerPorts.copy
 
-    call installer.port_setup
+    call installer.portSetup
     or a, a
     ld hl, osInvalidStr
     jp nz, .printMessage
@@ -34,7 +34,9 @@ installApp:
     jr .clearScreen
 
 .printMessage:
+    push hl
     call .clearScreen
+    pop hl
     call ti.PutS
     call ti.GetKey
 
@@ -100,7 +102,7 @@ installingStr:
     db "Installing app...", 0
 
 osInvalidStr:
-    db "Cannot use this OS.", 0
+    db "Cannot use this boot code.", 0
 
 celticInstalledStr:
     db "AsmHook2 app installed.   Open app to enable it.", 0
