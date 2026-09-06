@@ -27,28 +27,28 @@ portSetup:
     call ti.StrCmpre
     pop hl
     ret nz
-	ld (portUnlock.target), hl
-	xor a, a
-	ret
+    ld (portUnlock.target), hl
+    xor a, a
+    ret
 
 portPattern:
     db $ED, $79, $78, $FE, $A0, $28, $01, $CF
 .size := $-.
 
 portUnlock:
-	push iy, de, bc, hl
-	call ti._frameset0
-	ld iy, .unlockFinish
-	ld sp, ti._indcall + 7
-	ld bc, $22
-	xor a, a
+    push iy, de, bc, hl
+    call ti._frameset0
+    ld iy, .unlockFinish
+    ld sp, ti._indcall + 7
+    ld bc, $22
+    xor a, a
 
 .target := $ + 1
-	jp 0
+    jp 0
 
 .unlockFinish:
-	ld sp, ix
-	pop ix
+    ld sp, ix
+    pop ix
     ld a, $8C
     out0 ($24), a
     in0 a, ($06)
@@ -57,7 +57,7 @@ portUnlock:
     jr portLock.pop
 
 portLock:
-	push iy, de, bc, hl
+    push iy, de, bc, hl
     xor a, a
     out0 ($28), a
     in0 a, ($06)
@@ -69,7 +69,7 @@ portLock:
     out0 ($22), a
 
 .pop:
-	pop	hl, bc, de, iy
+    pop hl, bc, de, iy
     ret
 
 portWrite:
