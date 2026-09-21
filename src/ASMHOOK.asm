@@ -10,6 +10,10 @@
 name := 'ASMHOOK2'
 
 clean:	assert	~ti.LoadHLInd_s xor ti.JErrorNo and not $FF
+	ld	hl, ti.mpTmrCtrl + 1
+	ld	a, (hl)
+	and	a, l
+	ld	(hl), a
 	ex	(sp), hl
 	ld	(hl), ti.JErrorNo and $FF
 .good:	pop	hl, hl
