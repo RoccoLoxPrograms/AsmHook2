@@ -78,14 +78,14 @@ appInstalled:
     call ti.PutS
 
 .getKey:
-    call ti.GetCSC
-    cp a, ti.skRight
+    call ti.GetKey
+    cp a, ti.kRight
     jr z, .updateDisplay
-    cp a, ti.skLeft
+    cp a, ti.kLeft
     jr z, .updateDisplay
-    cp a, ti.skClear
+    cp a, ti.kClear
     jr z, .exit
-    cp a, ti.skEnter
+    cp a, ti.kEnter
     jr nz, .getKey
     bit ti.textInverse, (iy + ti.textFlags)
     jr nz, .exit
